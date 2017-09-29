@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_random_user.Generator</api_name>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>Generator</name>
+        <script><![CDATA[var Generator = Class.create();
+Generator.prototype = {
+	initialize: function() {
+		this.json = new global.JSON();
+		this.import_table = "x_snc_random_user_import";
+	},
+	get:function(results, gender){
+		var r = new sn_ws.RESTMessageV2('x_snc_random_user.Random User', 'GET');
+		r.setStringParameterNoEscape('results', results || 1);
+		r.setStringParameterNoEscape('gender', gender || false);
+		var response = r.execute();
+		var responseBody = response.getBody();
+		var httpStatus = response.getStatusCode();
+		if(httpStatus == 200){
+			return this.json.decode(responseBody).results;
+		}
+		return false;
+	},
+	getImage:function(imageUrl,importRecord){
+		var imageRest = new sn_ws.RESTMessageV2();
+		imageRest.setEndpoint(imageUrl);
+		imageRest.setHttpMethod("GET");
+		imageRest.saveResponseBodyAsAttachment(importRecord.getTableName(),importRecord.sys_id.toString(),"photo");
+		var imageResp = imageRest.execute();
+		
+		this.setUserPhoto(importRecord);
+	},
+	setUserPhoto:function(importRecord){
+		var userGR = new GlideRecord("sys_user");
+		userGR.get("user_name",importRecord.user_name.toString());
+		
+		var sa = new GlideSysAttachment();
+		sa.copy(importRecord.getTableName(),importRecord.sys_id.toString(),"ZZ_YYsys_user",userGR.sys_id.toString());
+	},
+	importUsers:function(newUsers){
+		for(var i = 0; i != newUsers.length; i++){
+			var newUser = newUsers[i];
+			this.importUser(newUser);
+		}
+	},
+	importUser:function(newUser){
+		var firstName = newUser.name.first.toString();
+		var lastName = newUser.name.last.toString();
+		firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
+		lastName = lastName.charAt(0).toUpperCase() + lastName.slice(1);
+		var importGR = new GlideRecord(this.import_table);
+		importGR.initialize();
+		importGR.active = true;
+		importGR.user_password = "password";
+		importGR.email = newUser.email;
+		importGR.first_name = firstName;
+		importGR.last_name = lastName;
+		importGR.gender = newUser.gender;
+		importGR.phone = newUser.phone;
+		importGR.user_name = newUser.login.username;
+		importGR.street = newUser.location.street;
+		importGR.state = newUser.location.state;
+		importGR.zip = newUser.location.postcode;
+		importGR.city = newUser.location.city;
+		var newRecord = importGR.insert();
+		this.getImage(newUser.picture.large,importGR);
+	},
+	log:function(message){
+		gs.info(message);
+	},
+	type: 'Generator'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>dachtman</sys_created_by>
+        <sys_created_on>2017-09-29 15:18:29</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>9401dbf4db298700e1b0d49fdf9619f4</sys_id>
+        <sys_mod_count>41</sys_mod_count>
+        <sys_name>Generator</sys_name>
+        <sys_package display_value="Random User Generator" source="x_snc_random_user">857c4374db298700e1b0d49fdf9619f8</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Random User Generator">857c4374db298700e1b0d49fdf9619f8</sys_scope>
+        <sys_update_name>sys_script_include_9401dbf4db298700e1b0d49fdf9619f4</sys_update_name>
+        <sys_updated_by>dachtman</sys_updated_by>
+        <sys_updated_on>2017-09-29 18:11:55</sys_updated_on>
+    </sys_script_include>
+</record_update>

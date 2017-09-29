@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_rest_message_fn">
+    <sys_rest_message_fn action="INSERT_OR_UPDATE">
+        <authentication_type>inherit_from_parent</authentication_type>
+        <basic_auth_password/>
+        <basic_auth_profile/>
+        <basic_auth_user/>
+        <content/>
+        <function_name>GET</function_name>
+        <http_method>get</http_method>
+        <lock>false</lock>
+        <oauth2_profile/>
+        <protocol_name/>
+        <qualified_name>Random User [ GET ]</qualified_name>
+        <rest_endpoint>https://randomuser.me/api?results=${results}&amp;gender=${gender}&amp;nat=US</rest_endpoint>
+        <rest_message display_value="Random User">e0cc8b74db298700e1b0d49fdf961973</rest_message>
+        <sys_class_name>sys_rest_message_fn</sys_class_name>
+        <sys_created_by>dachtman</sys_created_by>
+        <sys_created_on>2017-09-29 14:38:45</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>5aec8b74db298700e1b0d49fdf96197c</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>GET</sys_name>
+        <sys_package display_value="Random User Generator" source="x_snc_random_user">857c4374db298700e1b0d49fdf9619f8</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Random User Generator">857c4374db298700e1b0d49fdf9619f8</sys_scope>
+        <sys_update_name>sys_rest_message_fn_5aec8b74db298700e1b0d49fdf96197c</sys_update_name>
+        <sys_updated_by>dachtman</sys_updated_by>
+        <sys_updated_on>2017-09-29 14:49:47</sys_updated_on>
+        <use_basic_auth>false</use_basic_auth>
+        <use_mid_server/>
+        <use_mutual_auth>false</use_mutual_auth>
+    </sys_rest_message_fn>
+</record_update>

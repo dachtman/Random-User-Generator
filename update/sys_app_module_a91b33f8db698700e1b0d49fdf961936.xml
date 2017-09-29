@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_app_module">
+    <sys_app_module action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <application display_value="Random User Generator">66cabfb8db698700e1b0d49fdf9619ce</application>
+        <assessment/>
+        <content_page/>
+        <device_type/>
+        <filter/>
+        <hint/>
+        <homepage/>
+        <image/>
+        <link_type>SCRIPT</link_type>
+        <map_page/>
+        <mobile_title>Generate New Users</mobile_title>
+        <mobile_view_name>Mobile</mobile_view_name>
+        <name/>
+        <order>0</order>
+        <override_menu_roles>false</override_menu_roles>
+        <query>var g = new Generator();&#13;
+var results = g.get();&#13;
+if(results){&#13;
+  g.importUsers(results);&#13;
+}</query>
+        <report/>
+        <roles/>
+        <survey/>
+        <survey_overwrite>true</survey_overwrite>
+        <sys_class_name>sys_app_module</sys_class_name>
+        <sys_created_by>dachtman</sys_created_by>
+        <sys_created_on>2017-09-29 18:01:44</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>a91b33f8db698700e1b0d49fdf961936</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Generate New User</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Random User Generator" source="x_snc_random_user">857c4374db298700e1b0d49fdf9619f8</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Random User Generator">857c4374db298700e1b0d49fdf9619f8</sys_scope>
+        <sys_update_name>sys_app_module_a91b33f8db698700e1b0d49fdf961936</sys_update_name>
+        <sys_updated_by>dachtman</sys_updated_by>
+        <sys_updated_on>2017-09-29 18:06:01</sys_updated_on>
+        <timeline_page/>
+        <title>Generate New User</title>
+        <uncancelable>false</uncancelable>
+        <view_name/>
+        <window_name/>
+    </sys_app_module>
+</record_update>
